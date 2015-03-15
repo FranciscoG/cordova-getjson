@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.franciscog.CordovaGetJSON"
+    version="0.1.0">
+
+  <engines>
+      <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <name>Cordova GetJSON</name>
+  <description>Cordova Plugin that makes JSON api calls via native code rather than JS code in your webviews</description>
+  <author>FranciscoG</author>
+  <keywords>getJSON, api, ios, android, cordova, phonegap</keywords>
+  <license>MIT</license>
+  <repo>https://github.com/FranciscoG/cordova-getjson.git</repo>
+
+  <js-module src="www/CordovaGetJSON.js" name="CordovaGetJSON">
+    <clobbers target="CordovaGetJSON"/>
+  </js-module>
+
+  <platform name="android">
+    <source-file src="src/android/CordovaGetJSON.java" target-dir="src/com/franciscog/" />
+    <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="CordovaGetJSON">
+            <param name="android-package" value="com.franciscog.CordovaGetJSON" />
+        </feature>
+    </config-file>
+
+  </platform>
+
+
+</plugin>
