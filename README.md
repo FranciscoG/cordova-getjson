@@ -1,33 +1,24 @@
-The plan
+This plugin is in development and doesn't work yet.  DO NOT USE
 
-I want to be able to set multiple API urls in my config.xml like this:
 
-    <preference name="CordovaGetJSON">
-        <api name="uniqueApiName" url="https://api.url.com/whatever" />
-        <api name="uniqueApiName1" url="https://api.url.com/whatever" />
-        <api name="uniqueApiName2" url="https://api.url.com/whatever" />
-    </preference>
+# CordovaGetJSON
 
-Plugin makes asyc API calls on each of those urls immediately when an app is ready and has access to the network
+Sometimes you want to make api calls to urls and include senstive information like API keys.  This plugin allows you to make asynchronous calls to any URL that returns JSON from within the native platforms (iOS and Android only for now) instead of using XHR (AJAX) in your Javascript.
 
-on App device ready an an object is available with JSON results
+In your config.xml you set preferences with very unique names. Make sure they don't overlap any of the [possible config names available from Cordova](http://cordova.apache.org/docs/en/4.0.0/config_ref_index.md.html#The%20config.xml%20File)
 
-    window.CordovaGetJSON = {
-        uniqueApiName : JSON Result || undefined if failed,
-        uniqueApiName1 : JSON Result || undefined if failed,
-        uniqueApiName2 : JSON Result || undefined if failed
-    };
+```xml
+    <preference name="Api_URL_1" value="https://api.url.com/whatever" />
+    <preference name="Api_URL_2" value="https://api.url.com/something_else" />
+    <preference name="Api_URL_3" value="https://api.url.com/blablabla" />
+```
 
-Or, if possible, because we're dealing with Async calls it might be better to setup a custom event 
+Then in your JS you start the API Call like this:
+    
+```javascript
+    navigator.CordovaGetJSON.get("Api_URL_1", callBackFunction);
+    navigator.CordovaGetJSON.get("Api_URL_2", callBackFunction);
+    navigator.CordovaGetJSON.get("Api_URL_3", callBackFunction);
+```
 
-    document.addEventListener('CordovaGetJSON', function(resultObj){
-      if (typeof resultObj.uniqueApiName !== "undefined") {
-        // do something with the results
-      }
-      if (typeof resultObj.uniqueApiName1 !== "undefined") {
-        // do something with the results
-      }
-      if (typeof resultObj.uniqueApiName2 !== "undefined") {
-        // do something with the results
-      }
-    }, false);
+The callback function gets passed the resulting JSON or error
