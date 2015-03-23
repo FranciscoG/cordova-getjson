@@ -16,7 +16,7 @@
   <repo>https://github.com/FranciscoG/cordova-getjson.git</repo>
 
   <js-module src="www/CordovaGetJSON.js" name="CordovaGetJSON">
-    <clobbers target="CordovaGetJSON" />
+    <clobbers target="navigator.CordovaGetJSON" />
   </js-module>
 
   <platform name="android">

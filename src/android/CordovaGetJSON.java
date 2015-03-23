@@ -25,9 +25,13 @@ public class CordovaGetJSON extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("get")) {
-            String apiUrl = getPrefValue();
+            String apiUrl = getPrefValue(args[0]);
             if (apiUrl != null) {
                 // new getJSON().execute(apiUrl);
+                
+                PluginResult pluginResult = new  PluginResult(PluginResult.Status.NO_RESULT); 
+                pluginResult.setKeepCallback(true); 
+                return pluginResult; 
             }
         }
     }
@@ -36,11 +40,8 @@ public class CordovaGetJSON extends CordovaPlugin {
     // LOCAL METHODS
     //--------------------------------------------------------------------------
         
-    public String getPrefValue() {
-
-        // get the preference name="CordovaGetJSON"
-        String prefName = "CordovaGetJSON";
-        String api = cordova.getActivity().getIntent().getStringExtra(prefName.toLowerCase(Locale.getDefault()));
+    public String getPrefValue(String item) {
+        String api = cordova.getActivity().getIntent().getStringExtra(item.toLowerCase(Locale.getDefault()));
         return api;
     }
 

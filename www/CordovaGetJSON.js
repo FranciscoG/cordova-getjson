@@ -6,13 +6,12 @@ function CordovaGetJSON() {}
 
 /**
  * 
- *
- * @param {Function} successCallback The function to call when the heading data is available
- * @param {Function} errorCallback The function to call when there is an error getting the heading data. (OPTIONAL)
+ * @param {String} api                The Preference name in your config.xml that contains the value you want
+ * @param {Function} successCallback  The function to call when the heading data is available
  */
-CordovaGetJSON.prototype.getInfo = function (successCallback, errorCallback) {
-    argscheck.checkArgs('fF', 'CordovaGetJSON.getInfo');
-    exec(successCallback, errorCallback, "CordovaGetJSON", "startAPIcalls", []);
+CordovaGetJSON.prototype.get = function (api, successCallback) {
+    argscheck.checkArgs('sF', 'CordovaGetJSON.getInfo');
+    exec(successCallback, errorCallback, "CordovaGetJSON", "startAPIcalls", [api]);
 };
 
 module.exports = new CordovaGetJSON();
