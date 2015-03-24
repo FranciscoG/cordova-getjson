@@ -1,7 +1,8 @@
-This plugin is in development and doesn't work yet.  DO NOT USE
+
+# This plugin is in development and doesn't work yet.  DO NOT USE
 
 
-# CordovaGetJSON
+## CordovaGetJSON
 
 Sometimes you want to make api calls to urls and include senstive information like API keys.  This plugin allows you to make asynchronous calls to any URL that returns JSON from within the native platforms (iOS and Android only for now) instead of using XHR (AJAX) in your Javascript.
 
