@@ -4,17 +4,13 @@
 
 #import "CordovaGetJSON.h"
 
-@interface CordovaGetJSON (PrivateMethods)
-- (void)getPref;
-- (void)getJSON;
-@end
+CDVPluginResult* result = nil;
 
 @implementation CordovaGetJSON
 
 - (void)get:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* result = nil;
-
+    
     NSArray* options = command.arguments;
 
     if (!options) {
@@ -25,12 +21,12 @@
 
     @try {
         NSString *myPref = [self getPref:options[0]];
-
-        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: [myPref copy]];
+        [self getJSON:myPref myCommand:command];
+        result  =  [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT messageAsString:@""];
+        [result setKeepCallbackAsBool:YES];
     } @catch (NSException * e) {
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT messageAsString:[e reason]];
-    } @finally {
-        [result setKeepCallbackAsBool:YES];
+        [result setKeepCallbackAsBool:NO];
         [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
     }
 }
@@ -46,7 +42,7 @@
 }
 
 // http://stackoverflow.com/questions/16607883/asynchronous-request-example
-- (void)getJSON:(NSString *)json_url
+- (void)getJSON:(NSString *)json_url myCommand:(CDVInvokedUrlCommand*)command
 {
     NSURL *url = [NSURL URLWithString:json_url];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -60,7 +56,9 @@
         }
         else
         {
-            //NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: [data copy]];
+            [result setKeepCallbackAsBool:NO];
+            [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
         }
     }];
 }
