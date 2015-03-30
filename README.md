@@ -17,9 +17,9 @@ In your config.xml you set preferences with very unique names. Make sure they do
 Then in your JS you start the API Call like this:
     
 ```javascript
-    navigator.CordovaGetJSON.get("Api_URL_1", callBackFunction [, errorCallback]);
-    navigator.CordovaGetJSON.get("Api_URL_2", callBackFunction [, errorCallback]);
-    navigator.CordovaGetJSON.get("Api_URL_3", callBackFunction [, errorCallback]);
+    navigator.CordovaGetJSON.get("Api_URL_1", callBackFunction);
+    navigator.CordovaGetJSON.get("Api_URL_2", callBackFunction);
+    navigator.CordovaGetJSON.get("Api_URL_3", callBackFunction);
 ```
 
-The callback function gets passed the resulting JSON or error
+The callback function gets passed the resulting JSON or error.
