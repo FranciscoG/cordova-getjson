@@ -28,5 +28,16 @@
     </config-file>
   </platform>
 
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CordovaGetJSON">
+        <param name="ios-package" value="CordovaGetJSON"/>
+      </feature>
+    </config-file>
+    
+    <header-file src="src/ios/CordovaGetJSON.h" />
+    <source-file src="src/ios/CordovaGetJSON.m" />
+  </platform>
+
 
 </plugin>
