@@ -1,5 +1,5 @@
 //
-//  AppPreferences.h
+//  CordovaGetJSON.h
 //
 //
 
