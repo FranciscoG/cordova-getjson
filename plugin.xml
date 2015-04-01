@@ -26,6 +26,7 @@
             <param name="android-package" value="com.franciscog.CordovaGetJSON" />
         </feature>
     </config-file>
+    <source-file src="src/android/CordovaGetJSON.java" target-dir="src/com/franciscog/" />
   </platform>
 
   <platform name="ios">
