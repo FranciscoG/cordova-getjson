@@ -11,15 +11,18 @@ In your config.xml you set preferences with very unique names. Make sure they do
 Then in your JS you start the API Call like this:
     
 ```javascript
-    navigator.CordovaGetJSON.get("myUniqueName", function(data){
-      // do something with the returned string/JSON: data
-    });
+    navigator.CordovaGetJSON.get("myUniqueName", 
+      function(data){ // success callback
+        // do something with the returned string/JSON: data
+      },
+      function(error){ //error callback
+        // do something with the error
+      });
 ```
 
 Android minium level is 17
 
 TODO:    
-- Might bring back the errorCallback,  we'll see
 - add installation instruction (simple but people might need it)
 - create tests
-- get a 2nd opinion on code
+- get a 2nd opinion on code because it's my first time at both Android and Obj-C
